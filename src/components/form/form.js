@@ -4,9 +4,17 @@ import './form.css';
 const Form = () => {
 
   return (
-    <div className='form'>
-
-    </div>
+    <form className='form d-flex'>
+      <input
+        className='form-control post-label'
+        type="text"
+        placeholder='Write something...'
+      />
+      <button
+        className='btn btn-outline-secondary'
+        type='submit'>
+        Add</button>
+    </form>
   )
 }
 

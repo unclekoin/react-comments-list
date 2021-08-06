@@ -1,11 +1,11 @@
 import React from 'react';
-import './filter.css';
 
 const Filter = () => {
 
   return (
-    <div className='filter'>
-
+    <div className='btn-group'>
+      <button />
+      <button />
     </div>
   )
 }

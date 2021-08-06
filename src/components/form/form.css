@@ -1,8 +1,8 @@
-.bottom-panel {
+.form {
   margin-top: 20px;
 }
 
-.bottom-panel .new-post-label {
+.form .post-label {
   width: auto;
   flex-grow: 1;
   margin-right: 3px;

@@ -4,9 +4,11 @@ import './search.css';
 const Search = () => {
 
   return (
-    <div className='search'>
-
-    </div>
+      <input
+        className='search__input form-control'
+        type='text'
+        placeholder='Search notes'
+      />
   )
 }
 
