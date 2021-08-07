@@ -1,43 +1,59 @@
 .item {
-  font-size: 1.25rem;
+    padding: 0 15px;
+    font-size: 1.25rem;
+    border-radius: 5px;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
+}
+
+.item:not(:last-child) {
+    margin-bottom: 15px;
 }
 
 .item button {
-  width: 35px;
-  height: 35px;
-  margin: 3px;
-  font-size: 17px;
-  border: none;
-  cursor: pointer;
+    width: 35px;
+    height: 35px;
+    margin: 3px;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
 }
+
 .item button:focus {
     box-shadow: none;
     outline: none;
 }
+
 .item .btn-star {
-    color: #FFD700;
+    color: #aeaeae;
 }
+
 .item .btn-trash {
-    color: red;
+    color: #aeaeae;
+    transition: color 0.3s linear;
 }
+
+.item .btn-trash:hover {
+    color: #ff0000;
+}
+
 .item .fa-heart {
     width: 35px;
     height: 35px;
     text-align: center;
     line-height: 35px;
     font-size: 16px;
-    color: red;
+    color: #ff0000;
     transition: 0.3s all;
     transform: translateX(30px);
     opacity: 0;
 }
 
 .item__label {
-  display: block;
-  line-height: 35px;
-  cursor: pointer;
-  user-select: none;
-  transition: 0.5s all;
+    display: block;
+    line-height: 35px;
+    cursor: pointer;
+    user-select: none;
+    transition: 0.5s all;
 }
 
 .item.like .fa-heart {
@@ -45,11 +61,7 @@
     transform: translateX(0px);
 }
 
-.item.important .list__item-label {
-  color: #FFD700;
-}
-
 .item.important .btn-star {
-    color: #aeaeae;
+    color: #ffd700;
 }
 

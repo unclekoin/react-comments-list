@@ -7,7 +7,7 @@ const Search = () => {
       <input
         className='search__input form-control'
         type='text'
-        placeholder='Search notes'
+        placeholder='Search notes...'
       />
   )
 }

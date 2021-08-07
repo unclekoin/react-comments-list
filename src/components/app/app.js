@@ -7,6 +7,15 @@ import List from '../list';
 import Form from '../form';
 
 const App = () => {
+
+  const data = [
+    {label: 'Going to learn React', important: true},
+    {label: 'That is so good', important: false},
+    {label: 'I need a break...', important: false},
+    {label: 'Yes, of course!', important: false},
+    {label: 'I went...', important: false},
+  ]
+
   return (
     <div className="app">
       <Header/>
@@ -14,7 +23,7 @@ const App = () => {
         <Search/>
         <Filter />
       </div>
-      <List />
+      <List posts={ data } />
       <Form />
     </div>
   );
