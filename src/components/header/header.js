@@ -1,14 +1,14 @@
 import React from 'react';
-import './header.css'
+import './header.css';
 
-const Header = () => {
+const Header = ({ liked, posts }) => {
 
-  return(
-    <div className='header d-flex'>
+  return (
+    <div className="header d-flex">
       <h1>Pavel Koryakin</h1>
-      <h2>5 notes, likes 0</h2>
+      <h2>{ posts } notes, liked { liked }</h2>
     </div>
-  )
-}
+  );
+};
 
 export default Header;

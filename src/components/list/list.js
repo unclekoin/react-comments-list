@@ -2,13 +2,15 @@ import React from 'react';
 import './list.css';
 import Item from '../item';
 
-const List = ({ posts, onDelete }) => {
+const List = ({ data, onDelete, onToggleImportant, onToggleLiked }) => {
 
-  const elements = posts.map(({ id, ...post }) => (
+  const elements = data.map(({ id, ...dataItem }) => (
     <Item
       key={ id }
-      { ...post }
+      { ...dataItem }
       onDelete={ () => onDelete(id) }
+      onToggleImportant={ () => onToggleImportant(id) }
+      onToggleLiked={ () => onToggleLiked(id) }
     />));
 
   return (

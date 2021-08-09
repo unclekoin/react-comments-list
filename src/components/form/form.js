@@ -1,22 +1,50 @@
-import React from 'react'
+import React, { Component } from 'react';
 import './form.css';
 
-const Form = ({ onAdd }) => {
+export default class Form extends Component {
 
-  return (
-    <div className='form d-flex'>
-      <input
-        className='form-control post-label'
-        type="text"
-        placeholder='Write something...'
-      />
-      <button
-        className='btn btn-outline-secondary'
-        onClick={() => onAdd('Hello')}
-        type='submit'>
-        Add</button>
-    </div>
-  )
+  state = {
+    text: ''
+  };
+
+  onValueChange = ({ target }) => {
+    this.setState({
+      text: target.value
+    });
+  };
+
+  onSubmit = (event) => {
+    event.preventDefault();
+    const text = this.state.text.trim();
+    if (text) {
+      this.props.onAdd(text);
+    }
+
+    this.setState({
+      text: ''
+    });
+  };
+
+  render() {
+
+    return (
+      <form
+        className="form d-flex"
+        onSubmit={ this.onSubmit }
+      >
+        <input
+          className="form-control post-label"
+          onChange={ this.onValueChange }
+          value={ this.state.text }
+          type="text"
+          placeholder="Write something..."
+        />
+        <button
+          className="btn btn-outline-secondary"
+          type="submit">
+          Add
+        </button>
+      </form>
+    );
+  }
 }
-
-export default Form;

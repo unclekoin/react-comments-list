@@ -11,11 +11,11 @@ export default class App extends Component {
 
   state = {
     data: [
-      { id: _id(), label: 'Going to learn React', important: true },
-      { id: _id(), label: 'That is so good', important: false },
-      { id: _id(), label: 'I need a break...', important: false },
-      { id: _id(), label: 'Yes, of course!', important: false },
-      { id: _id(), label: 'I went...', important: false },
+      { id: _id(), label: 'Going to learn React', important: false, like: false },
+      { id: _id(), label: 'That is so good', important: false, like: false },
+      { id: _id(), label: 'I need a break...', important: false, like: false },
+      { id: _id(), label: 'Yes, of course!', important: false, like: false },
+      { id: _id(), label: 'I went...', important: false, like: false },
     ]
   };
 
@@ -32,27 +32,57 @@ export default class App extends Component {
     const item = {
       id: _id(),
       label: body,
-      important: false
-    }
+      important: false,
+      like: false
+    };
 
-    this.setState(({data}) => {
+    this.setState(({ data }) => {
       return {
         data: [...data, item]
-      }
-    })
+      };
+    });
+  };
+
+  modifiedData = (field, id) => {
+    this.setState(({ data }) => {
+      const index = data.findIndex((item) => item.id === id);
+      const modifiedItem = { ...data[index], [field]: !data[index][field] };
+
+      return {
+        data: [...data.slice(0, index), modifiedItem, ...data.slice(index + 1)]
+      };
+    });
+  }
+
+  onToggleImportant = (id) => {
+    return this.modifiedData('important', id);
+  };
+
+  onToggleLiked = (id) => {
+    return this.modifiedData('like', id);
   };
 
   render() {
+    const { data } = this.state;
+
+    const liked = data.filter((item) => item.like).length;
+    const posts = data.length;
+
     return (
       <div className="app">
-        <Header/>
+        <Header
+          liked={ liked }
+          posts={ posts }
+        />
         <div className="search d-flex">
           <Search/>
           <Filter/>
         </div>
         <List
-          posts={ this.state.data }
+          data={ this.state.data }
           onDelete={ this.deleteItem }
+          onToggleImportant={ this.onToggleImportant }
+          onToggleLiked={ this.onToggleLiked }
         />
         <Form
           onAdd={ this.addItem }
