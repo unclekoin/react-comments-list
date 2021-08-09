@@ -16,7 +16,9 @@ export default class App extends Component {
       { id: _id(), label: 'I need a break...', important: false, like: false },
       { id: _id(), label: 'Yes, of course!', important: false, like: false },
       { id: _id(), label: 'I went...', important: false, like: false },
-    ]
+    ],
+    term: '',
+    filter: 'all'
   };
 
   deleteItem = (id) => {
@@ -52,7 +54,7 @@ export default class App extends Component {
         data: [...data.slice(0, index), modifiedItem, ...data.slice(index + 1)]
       };
     });
-  }
+  };
 
   onToggleImportant = (id) => {
     return this.modifiedData('important', id);
@@ -62,11 +64,41 @@ export default class App extends Component {
     return this.modifiedData('like', id);
   };
 
+  searchPost = (items, term) => {
+    if (!term.length) {
+      return items;
+    }
+
+    return items.filter((item) => {
+      return item.label.indexOf(term) > -1;
+    });
+  };
+
+  onUpdateSearch = (term) => {
+    this.setState({ term });
+  };
+
+  filterPosts = (items, filter) => {
+    switch (filter) {
+      case 'like':
+        return items.filter((item) => item.like);
+      default:
+        return items;
+    }
+  };
+
+  onFilterSelect = (filter) => {
+    this.setState({ filter });
+  };
+
+
   render() {
-    const { data } = this.state;
+    const { data, term, filter } = this.state;
 
     const liked = data.filter((item) => item.like).length;
     const posts = data.length;
+
+    const visiblePosts = this.filterPosts(this.searchPost(data, term), filter);
 
     return (
       <div className="app">
@@ -75,11 +107,16 @@ export default class App extends Component {
           posts={ posts }
         />
         <div className="search d-flex">
-          <Search/>
-          <Filter/>
+          <Search
+            onUpdateSearch={ this.onUpdateSearch }
+          />
+          <Filter
+            filter={ this.state.filter }
+            onFilterSelect={ this.onFilterSelect }
+          />
         </div>
         <List
-          data={ this.state.data }
+          data={ visiblePosts }
           onDelete={ this.deleteItem }
           onToggleImportant={ this.onToggleImportant }
           onToggleLiked={ this.onToggleLiked }
