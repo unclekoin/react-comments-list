@@ -1,10 +1,10 @@
 import React from 'react'
 import './form.css';
 
-const Form = () => {
+const Form = ({ onAdd }) => {
 
   return (
-    <form className='form d-flex'>
+    <div className='form d-flex'>
       <input
         className='form-control post-label'
         type="text"
@@ -12,9 +12,10 @@ const Form = () => {
       />
       <button
         className='btn btn-outline-secondary'
+        onClick={() => onAdd('Hello')}
         type='submit'>
         Add</button>
-    </form>
+    </div>
   )
 }
 

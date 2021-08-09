@@ -19,6 +19,8 @@ export default class Item extends Component {
     }));
   };
 
+  L;
+
   onLike() {
     this.setState(({ like }) => ({
       like: !like
@@ -26,7 +28,7 @@ export default class Item extends Component {
   };
 
   render() {
-    const { label } = this.props;
+    const { label, onDelete } = this.props;
     const { important, like } = this.state;
 
     let classNames = 'item d-flex justify-content-between align-items-center';
@@ -46,7 +48,10 @@ export default class Item extends Component {
             type="button">
             <i className="fas fa-star"/>
           </button>
-          <button className="btn btn-light btn-trash btn-sm" type="button">
+          <button
+            className="btn btn-light btn-trash btn-sm"
+            onClick={ onDelete }
+            type="button">
             <i className="fas fa-trash-alt"/>
           </button>
           <i className="fas fa-heart"/>
